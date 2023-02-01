@@ -1,4 +1,4 @@
-name: BungeePluginTemplate
+name: BungeePlugin
+main: dev.nevah5.mc.bungee_plugin.BungeePlugin
 version: 1.0.0
 author: mc.nevah5.dev
-main: dev.nevah5.mc.bungee_template.PluginClass
