@@ -4,6 +4,7 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
@@ -18,7 +19,7 @@ public class BungeePlugin extends Plugin implements Listener {
     }
 
     @EventHandler
-    public void onPostLogin(PostLoginEvent event) {
+    public void onPostLogin(ServerConnectedEvent event) {
         ProxiedPlayer player = event.getPlayer();
         player.setTabHeader(
                 new TextComponent(String.format("\n         %sᐅ %s%smc.nevah5.dev %sᐊ         \n\n",
@@ -27,7 +28,7 @@ public class BungeePlugin extends Plugin implements Listener {
                 )),
                 new TextComponent(String.format("\n          %s%sServer:%s  %s          \n\n", ChatColor.YELLOW,
                         ChatColor.BOLD, ChatColor.GRAY,
-                        "servername"
+                        event.getServer().getInfo().getName()
                 ))
         );
     }
