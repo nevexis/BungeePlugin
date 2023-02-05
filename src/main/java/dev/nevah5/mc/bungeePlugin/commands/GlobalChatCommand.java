@@ -8,7 +8,6 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class GlobalChatCommand extends Command {
-    private static final String[] COMMANDS = { "message" };
     public GlobalChatCommand(String command) {
         super(command);
     }

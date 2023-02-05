@@ -1,6 +1,7 @@
 package dev.nevah5.mc.bungeePlugin;
 
 import dev.nevah5.mc.bungeePlugin.commands.GlobalChatCommand;
+import dev.nevah5.mc.bungeePlugin.eventHandlers.GlobalChatTabCompleteHandler;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -13,7 +14,7 @@ public class BungeePlugin extends Plugin implements Listener {
     @Override
     public void onEnable(){
         getProxy().getPluginManager().registerListener(this, this);
-        getProxy().getPluginManager().registerCommand(this, new dev.nevah5.mc.bungeePlugin.commands.GlobalChatCommand("gc"));
+        getProxy().getPluginManager().registerCommand(this, new GlobalChatCommand("gc"));
         getProxy().getPluginManager().registerCommand(this, new GlobalChatCommand("globalchat"));
         getLogger().info("Loaded!");
     }
