@@ -1,4 +1,4 @@
-package dev.nevah5.mc.bungee_plugin.commands;
+package dev.nevah5.mc.bungeePlugin.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -8,6 +8,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
 public class GlobalChatCommand extends Command {
+    private static final String[] COMMANDS = { "message" };
     public GlobalChatCommand(String command) {
         super(command);
     }
