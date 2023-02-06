@@ -24,6 +24,16 @@ public class GlobalChatCommand extends Command {
                 )));
             }else{
                 String message = String.join(" ", args);
+                if(message.equals("")) {
+                    commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
+                            ChatColor.AQUA,
+                            ChatColor.BOLD,
+                            ChatColor.DARK_GRAY,
+                            ChatColor.LIGHT_PURPLE,
+                            "Please enter a message. /gc <message>"
+                    )));
+                    return;
+                }
                 ProxyServer.getInstance().getPlayers().forEach(p -> {
                     p.sendMessage(new TextComponent(String.format(
                             "%s[%s%sGC%s]%s %s%sAdmin %s%s| %s%s %s>> %s%s",
