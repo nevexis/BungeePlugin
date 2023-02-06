@@ -16,8 +16,32 @@ public class SettingsCommand extends Command {
         if(commandSender instanceof ProxiedPlayer){
             String joinedArgs = String.join(" ", args);
             switch (joinedArgs){
-                case "globalchat off":
-                    //TODO: functionality
+                case "globalchat toggle":
+                    if(commandSender.hasPermission("network.globalchat.hide")) {
+                        commandSender.setPermission(
+                                "network.globalchat.hide",
+                                true
+                        );
+                        commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
+                                ChatColor.AQUA,
+                                ChatColor.BOLD,
+                                ChatColor.DARK_GRAY,
+                                ChatColor.LIGHT_PURPLE,
+                                "Global Chat is not shown anymore."
+                        )));
+                    }else{
+                        commandSender.setPermission(
+                                "network.globalchat.hide",
+                                false
+                        );
+                        commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
+                                ChatColor.AQUA,
+                                ChatColor.BOLD,
+                                ChatColor.DARK_GRAY,
+                                ChatColor.LIGHT_PURPLE,
+                                "Global Chat is shown again."
+                        )));
+                    }
                     break;
                 default:
                     commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %sIncomplete command.",
