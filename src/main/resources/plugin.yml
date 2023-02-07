@@ -2,3 +2,5 @@ name: BungeePlugin
 main: dev.nevah5.mc.bungeePlugin.BungeePlugin
 version: 1.0.0
 author: mc.nevah5.dev
+depend:
+  - LuckPerms
