@@ -3,6 +3,9 @@ package dev.nevah5.mc.bungeePlugin;
 import dev.nevah5.mc.bungeePlugin.commands.GlobalChatCommand;
 import dev.nevah5.mc.bungeePlugin.commands.SettingsCommand;
 import dev.nevah5.mc.bungeePlugin.eventHandlers.SettingsTabCompleteHandler;
+import lombok.Getter;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -12,14 +15,21 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
 public class BungeePlugin extends Plugin implements Listener {
+    @Getter
+    private LuckPerms luckPerms;
+
     @Override
     public void onEnable(){
         getProxy().getPluginManager().registerListener(this, this);
         getProxy().getPluginManager().registerCommand(this, new GlobalChatCommand("gc"));
         getProxy().getPluginManager().registerCommand(this, new GlobalChatCommand("globalchat"));
-        getProxy().getPluginManager().registerCommand(this, new SettingsCommand());
+        getProxy().getPluginManager().registerCommand(this, new SettingsCommand(this));
         getProxy().getPluginManager().registerListener(this, new SettingsTabCompleteHandler());
         getLogger().info("Loaded!");
+
+        // load luckperms
+        luckPerms = LuckPermsProvider.get();
+        getLogger().info("Luckperms: "+luckPerms.toString());
     }
 
     @EventHandler
