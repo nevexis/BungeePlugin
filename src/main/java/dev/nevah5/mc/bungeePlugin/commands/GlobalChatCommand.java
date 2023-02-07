@@ -15,12 +15,12 @@ public class GlobalChatCommand extends Command {
     public void execute(CommandSender commandSender, String[] args){
         if(commandSender instanceof ProxiedPlayer){
             if(commandSender.hasPermission("network.globalchat.hide")) {
-                commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %sYou have global chat " +
-                        "disabled.",
+                commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
                         ChatColor.AQUA,
                         ChatColor.BOLD,
                         ChatColor.DARK_GRAY,
-                        ChatColor.LIGHT_PURPLE
+                        ChatColor.LIGHT_PURPLE,
+                        "You have global chat disabled."
                 )));
             }else{
                 String message = String.join(" ", args);
