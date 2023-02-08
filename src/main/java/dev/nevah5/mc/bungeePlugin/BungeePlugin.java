@@ -29,7 +29,6 @@ public class BungeePlugin extends Plugin implements Listener {
 
         // load luckperms
         luckPerms = LuckPermsProvider.get();
-        getLogger().info("Luckperms: "+luckPerms.toString());
     }
 
     @EventHandler
