@@ -14,52 +14,40 @@ import net.md_5.bungee.api.plugin.Command;
 
 import java.util.UUID;
 
-public class SettingsCommand extends Command {
+public class GlobalChatToggleCommand extends Command {
     private final BungeePlugin bungeePlugin;
-    public SettingsCommand(BungeePlugin bungeePlugin) {
-        super("settings");
+    public GlobalChatToggleCommand(BungeePlugin bungeePlugin) {
+        super("gctoggle");
         this.bungeePlugin = bungeePlugin;
     }
 
     public void execute(CommandSender commandSender, String[] args){
         if(commandSender instanceof ProxiedPlayer){
-            String joinedArgs = String.join(" ", args);
-            switch (joinedArgs){
-                case "globalchat toggle":
-                    if(commandSender.hasPermission("network.globalchat.hide")) {
-                        updateUserPermissions(
-                                ((ProxiedPlayer) commandSender).getUniqueId(),
-                                "network.globalchat.hide",
-                                true
-                        );
-                        commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
-                                ChatColor.AQUA,
-                                ChatColor.BOLD,
-                                ChatColor.DARK_GRAY,
-                                ChatColor.LIGHT_PURPLE,
-                                "Global Chat is shown again."
-                        )));
-                    }else{
-                        updateUserPermissions(
-                                ((ProxiedPlayer) commandSender).getUniqueId(),
-                                "network.globalchat.hide"
-                        );
-                        commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
-                                ChatColor.AQUA,
-                                ChatColor.BOLD,
-                                ChatColor.DARK_GRAY,
-                                ChatColor.LIGHT_PURPLE,
-                                "Global Chat is not shown anymore."
-                        )));
-                    }
-                    break;
-                default:
-                    commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %sIncomplete command.",
-                            ChatColor.AQUA,
-                            ChatColor.BOLD,
-                            ChatColor.DARK_GRAY,
-                            ChatColor.LIGHT_PURPLE
-                    )));
+            if(commandSender.hasPermission("network.globalchat.hide")) {
+                updateUserPermissions(
+                        ((ProxiedPlayer) commandSender).getUniqueId(),
+                        "network.globalchat.hide",
+                        true
+                );
+                commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
+                        ChatColor.AQUA,
+                        ChatColor.BOLD,
+                        ChatColor.DARK_GRAY,
+                        ChatColor.LIGHT_PURPLE,
+                        "Global Chat is shown again."
+                )));
+            }else{
+                updateUserPermissions(
+                        ((ProxiedPlayer) commandSender).getUniqueId(),
+                        "network.globalchat.hide"
+                );
+                commandSender.sendMessage(new TextComponent(String.format("%s%sServer %s>> %s%s",
+                        ChatColor.AQUA,
+                        ChatColor.BOLD,
+                        ChatColor.DARK_GRAY,
+                        ChatColor.LIGHT_PURPLE,
+                        "Global Chat is not shown anymore."
+                )));
             }
         }else{
             ProxyServer.getInstance().getLogger().warning("Settings command has to be run by a player.");
